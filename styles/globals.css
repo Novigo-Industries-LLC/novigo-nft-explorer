@@ -24,3 +24,30 @@ a {
     background: black;
   }
 }
+
+#navbar {
+  background: linear-gradient(110deg, #a32edd 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #a32edd 33%, #9249de 33%, #08b9e9 10%);
+}
+
+#solana-card:hover #solana-card-info {
+  top: 0;
+}
+
+.loader {
+  position: absolute;
+  top: 20em;
+  border-radius: 12px;
+  animation: loading 2s linear infinite;
+  height: 10em;
+  width: 10em;
+  background: url("https://res.cloudinary.com/aa1997/image/upload/v1668383195/dsEdj6lPPuVIne_ZYgyAuXg7w1dMw5EUKFH0JBVqpUC4ydWhWmjVd_FSDQrq1TSOTwn0Tfv0LIw9NUKuLKfhT9pva0dTaQ26ncyC4T880G1AeP9J3i-PgxiUZoGujobizMh28nv3.png");
+  background-size: cover;
+  background-position: center;
+  object-position: center;
+}
+
+@keyframes loading {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  50% { transform: rotateX(0deg) rotateY(180deg); }
+  100% { transform: rotateX(180deg) rotateY(180deg); }
+}
