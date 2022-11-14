@@ -31,7 +31,7 @@ const Layout = (props: React.PropsWithChildren<any>) => {
           bg="#1a1a1a"
           justify="center"
           position='absolute'
-          top='100vh'
+          top='100%'
         >
           <Text color="white">
             This solana nft explorer was created by {" "}

@@ -88,7 +88,7 @@ const Home: NextPage = () => {
         value={nftAddress}
       />
       {loading ? (
-        <div className="loader" />
+        <div style={{ height: '100vh', position: 'relative' }}><div className="loader" /></div>
       ) : (
         <SpaceBetweenColumn>
           {nftSelected ? (
