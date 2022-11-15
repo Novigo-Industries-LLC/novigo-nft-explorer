@@ -12,6 +12,8 @@
     "@chakra-ui/react": "^2.3.7",
     "@emotion/react": "^11.10.5",
     "@emotion/styled": "^11.10.5",
+    "@moralisweb3/api-utils": "^2.7.2",
+    "@moralisweb3/evm-utils": "^2.7.2",
     "@moralisweb3/sol-utils": "^2.7.2",
     "@solana/web3.js": "^1.66.2",
     "axios": "^1.1.3",

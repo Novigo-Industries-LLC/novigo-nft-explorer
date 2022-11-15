@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { CenteredColumn } from "./Columns";
-import { Image, Text, VStack } from "@chakra-ui/react";
+import { Image, Text, Button } from "@chakra-ui/react";
 // import { ChakraProvider, HStack, VStack } from '@chakra-ui/react';
 
 export interface SolanaCardProps {
@@ -12,6 +12,7 @@ export interface SolanaCardProps {
   primarySaleHappened: number;
   width?: string;
   collection?: { name: string; family: string };
+  redirectUrl: string;
 }
 
 const SolanaCard = ({
@@ -22,6 +23,7 @@ const SolanaCard = ({
   royalty,
   primarySaleHappened,
   width,
+  redirectUrl,
 }: SolanaCardProps) => {
   return (
     <CenteredColumn
@@ -56,13 +58,14 @@ const SolanaCard = ({
         boxSizing="border-box"
         padding="1em"
         cursor='pointer'
-        id="solana-card-info"
+        id="card-info"
       >
         <Text fontSize="1.5em">{name}</Text>
         <Text>{description}</Text>
         {collection && <Text>{collection.name}</Text>}
         <Text>Royalty: {royalty}%</Text>
         {new Boolean(primarySaleHappened) && <Text>Sold</Text>}
+        <Button color="#a32edd" background='white' as='a' onClick={() => window.open(redirectUrl, '_blank')}>See NFT Details</Button>
       </CenteredColumn>
     </CenteredColumn>
   );

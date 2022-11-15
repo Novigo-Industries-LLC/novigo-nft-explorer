@@ -25,25 +25,117 @@ a {
   }
 }
 
-#navbar {
+
+#solana-navbar {
   background: linear-gradient(110deg, #a32edd 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #a32edd 33%, #9249de 33%, #08b9e9 10%);
 }
+#bsc-navbar {
+  background: linear-gradient(110deg, #0C0E12 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg,  #FAD338 33%,  #FAD338 33%,  #FAD338 10%);
+}
+#aval-navbar {
+  background: linear-gradient(110deg, #E84142 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+}
+#polygon-navbar {
+  background: linear-gradient(110deg, #8247e5 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+}
 
-#solana-card:hover #solana-card-info {
+#navbar-button {
+  height: 4em;
+  width: 3em;
+  border-radius: 50%;
+  background-size: cover;
+  background-position: center;
+  object-position: center;
+  transition: all 0.5s;
+  transform: rotateX(60deg);
+  box-sizing: unset !important;
+  background-color: white;
+  position: relative;
+}
+
+#navbar-button:hover {
+  opacity: 0.8;
+  transform: translateY(4%) rotateX(60deg);
+}
+
+#navbar-button:active {
+  opacity: 0.8;
+}
+ 
+#navbar-button:hover:before {
+  transform: translateY(0%);
+}
+
+#navbar-button:before {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  background: transparent;
+  border-top: none;
+  box-shadow: 0 20px 0px rgba(0, 0, 0, 0.9);
+  transition: all 0.5s;
+  transform: scale(1.05) translateY(5%);
+}
+
+
+#solana-card:hover #card-info {
+  top: 0;
+}
+
+#nft-card:hover #card-info {
   top: 0;
 }
 
 .loader {
   position: absolute;
-  top: 20em;
+  top: 10em;
+  left: -5em;
   border-radius: 12px;
-  animation: loading 2s linear infinite;
+  animation: loading 2s linear infinite alternate;
   height: 10em;
   width: 10em;
+}
+
+.loader.solana {
   background: url("https://res.cloudinary.com/aa1997/image/upload/v1668383195/dsEdj6lPPuVIne_ZYgyAuXg7w1dMw5EUKFH0JBVqpUC4ydWhWmjVd_FSDQrq1TSOTwn0Tfv0LIw9NUKuLKfhT9pva0dTaQ26ncyC4T880G1AeP9J3i-PgxiUZoGujobizMh28nv3.png");
   background-size: cover;
   background-position: center;
   object-position: center;
+}
+
+.loader.bsc {
+  background: url("https://res.cloudinary.com/aa1997/image/upload/v1668398929/binance.png");
+  background-size: cover;
+  background-position: center;
+  object-position: center;
+}
+
+.loader.avalanche {
+  background: url("https://res.cloudinary.com/aa1997/image/upload/v1668398929/avalanche.png");
+  background-size: cover;
+  background-position: center;
+  object-position: center;
+}
+
+.loader.polygon {
+  background: url("https://res.cloudinary.com/aa1997/image/upload/v1668398929/polygon.webp");
+  background-size: cover;
+  background-position: center;
+  object-position: center;
+}
+
+@media(min-width: 768px) {
+  .loader {
+    top: 20em;
+  }
+  #navbar-button {
+    height: 6em;
+    width: 5em;
+  }    
 }
 
 @keyframes loading {
