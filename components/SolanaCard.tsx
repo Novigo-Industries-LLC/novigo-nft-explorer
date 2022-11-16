@@ -1,7 +1,7 @@
 import Head from "next/head";
 import React from "react";
 import { CenteredColumn } from "./Columns";
-import { Image, Text, Button } from "@chakra-ui/react";
+import { Image, Text, Button, Img, Spinner } from "@chakra-ui/react";
 // import { ChakraProvider, HStack, VStack } from '@chakra-ui/react';
 
 export interface SolanaCardProps {
@@ -25,6 +25,8 @@ const SolanaCard = ({
   width,
   redirectUrl,
 }: SolanaCardProps) => {
+  const [imageUrl, setImageUrl] = React.useState("https://res.cloudinary.com/aa1997/image/upload/v1668383195/dsEdj6lPPuVIne_ZYgyAuXg7w1dMw5EUKFH0JBVqpUC4ydWhWmjVd_FSDQrq1TSOTwn0Tfv0LIw9NUKuLKfhT9pva0dTaQ26ncyC4T880G1AeP9J3i-PgxiUZoGujobizMh28nv3.png");
+
   return (
     <CenteredColumn
       padding="0"
@@ -38,13 +40,18 @@ const SolanaCard = ({
       id="solana-card"
       overflow="hidden"
     >
-      <Image
+      <Img
         position="relative"
         height="100%"
         width="100%"
-        src={image}
+        src={imageUrl}
+        onLoad={e => {
+          setImageUrl(image);
+        }}
         alt={name}
+        loading="lazy"
       />
+      {imageUrl !== image && <Spinner position="absolute" size="lg" color="#a32edd" />}
       <CenteredColumn
         marginTop="0 !important"
         background="#a32edd"

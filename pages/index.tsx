@@ -242,7 +242,6 @@ const Home: NextPage<HomeProps> = ({
       <NonSolanaNFTCard
         key={idx}
         {...convertDataToNonSolanaCardDisplay(nft)}
-        isCronos
       />
     ));
   }

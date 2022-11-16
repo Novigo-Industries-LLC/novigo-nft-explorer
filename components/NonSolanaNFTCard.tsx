@@ -1,7 +1,7 @@
 import Head from "next/head";
-import React from "react";
+import React, { useState } from "react";
 import { CenteredColumn } from "./Columns";
-import { Image, Text, Button } from "@chakra-ui/react";
+import { Image, Text, Button, Img, Spinner } from "@chakra-ui/react";
 import { getChainLogoUrl } from "constants/defaultAddresses";
 // import { ChakraProvider, HStack, VStack } from '@chakra-ui/react';
 
@@ -30,6 +30,14 @@ const NonSolanaNFTCard = ({
   width,
   redirectUrl,
 }: NonSolanaNFTCardProps) => {
+  const [imageUrl, setImageUrl] = useState(getChainLogoUrl(isAvalanche ?? false, isPolygon ?? false, isCronos ?? false));
+  const getSpinnerColor = () => {  
+    if(isAvalanche) return "#E84142";
+    if(isPolygon) return "#8247e5";
+    if(isCronos) return "#00286a";
+    return "#FAD338";
+  }
+  
   const getCardColorScheme = () => {
     if (isAvalanche)
       return {
@@ -76,15 +84,18 @@ const NonSolanaNFTCard = ({
       id="nft-card"
       overflow="hidden"
     >
-      <Image
+      <Img
         position="relative"
         height="100%"
         width="100%"
-        src={image}
-        fallbackSrc={getChainLogoUrl(isAvalanche ?? false, isPolygon ?? false, isCronos ?? false)}
+        src={imageUrl}
+        onLoad={e => {
+          setImageUrl(image);
+        }}
         alt={name}
         loading="lazy"
       />
+      {image !== imageUrl && <Spinner position='absolute' size='lg' color={getSpinnerColor()} />}
       <CenteredColumn
         marginTop="0 !important"
         position="absolute"
@@ -105,7 +116,7 @@ const NonSolanaNFTCard = ({
         <Text>
           {typeof description === "string" ? getCardDesription() : ""}
         </Text>
-        <Text>Token ID: {tokenID}%</Text>
+        <Text>Token ID: {tokenID}</Text>
         <Button
           as="a"
           borderWidth="2px"
