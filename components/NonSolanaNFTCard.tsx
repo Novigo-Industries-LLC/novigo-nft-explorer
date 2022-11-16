@@ -14,7 +14,7 @@ export interface NonSolanaNFTCardProps {
   redirectUrl: string;
   isAvalanche?: boolean;
   isPolygon?: boolean;
-  isBinance?: boolean;
+  isCronos?: boolean;
   width?: string;
 }
 
@@ -26,7 +26,7 @@ const NonSolanaNFTCard = ({
   collectionName,
   isAvalanche,
   isPolygon,
-  isBinance,
+  isCronos,
   width,
   redirectUrl,
 }: NonSolanaNFTCardProps) => {
@@ -40,6 +40,12 @@ const NonSolanaNFTCard = ({
     if (isPolygon)
       return {
         background: "#8247e5",
+        color: "white",
+        borderColor: "white",
+      };
+    if(isCronos)
+      return {
+        background: "#00286a",
         color: "white",
         borderColor: "white",
       };
@@ -75,7 +81,7 @@ const NonSolanaNFTCard = ({
         height="100%"
         width="100%"
         src={image}
-        fallbackSrc={getChainLogoUrl(isAvalanche ?? false, isPolygon ?? false)}
+        fallbackSrc={getChainLogoUrl(isAvalanche ?? false, isPolygon ?? false, isCronos ?? false)}
         alt={name}
         loading="lazy"
       />

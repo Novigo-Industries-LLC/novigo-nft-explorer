@@ -27,6 +27,10 @@ const chains = [
       "https://res.cloudinary.com/aa1997/image/upload/v1668398929/aval.png",
     value: "avalanche",
   },
+  {
+    image: "https://res.cloudinary.com/aa1997/image/upload/v1668570258/Cryptocom.jpg",
+    value: "cronos"
+  }
 ];
 
 const Layout = (props: React.PropsWithChildren<any>) => {
@@ -40,6 +44,7 @@ const Layout = (props: React.PropsWithChildren<any>) => {
     if (currentChainSelected === "bsc") return "bsc-navbar";
     if (currentChainSelected === "avalanche") return "aval-navbar";
     if (currentChainSelected === "polygon") return "polygon-navbar";
+    if (currentChainSelected === "cronos") return "cronos-navbar";
     return "solana-navbar";
   };
 
@@ -47,6 +52,7 @@ const Layout = (props: React.PropsWithChildren<any>) => {
     if (currentChainSelected === "bsc") return "Binance NFT Explorer";
     if (currentChainSelected === "avalanche") return "Avalanche NFT Explorer";
     if (currentChainSelected === "polygon") return "Polygon NFT Explorer";
+    if (currentChainSelected === "cronos") return "Cronos NFT Explorer";
     return "Solana NFT Explorer";
   };
   return (
@@ -88,6 +94,7 @@ const Layout = (props: React.PropsWithChildren<any>) => {
                 className={`${
                   currentChainSelected === chain.value && "selected-button"
                 }`}
+                disabled={loading && currentChainSelected !== chain.value}
                 id="navbar-button"
               />
             ))}

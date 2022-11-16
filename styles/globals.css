@@ -33,15 +33,33 @@ a {
   background: linear-gradient(110deg, #0C0E12 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg,  #FAD338 33%,  #FAD338 33%,  #FAD338 10%);
 }
 #aval-navbar {
-  background: linear-gradient(110deg, #E84142 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+  background: linear-gradient(110deg, #E84142 90%, rgba(0, 0, 0, 0) 90%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
 }
 #polygon-navbar {
-  background: linear-gradient(110deg, #8247e5 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+  background: linear-gradient(110deg, #8247e5 90%, rgba(0, 0, 0, 0) 90%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+}
+#cronos-navbar {
+  background: linear-gradient(110deg, #00286a 90%, rgba(0, 0, 0, 0) 90%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+}
+
+@media(min-width: 768px) {
+  #bsc-navbar {
+    background: linear-gradient(110deg, #0C0E12 33%, rgba(0, 0, 0, 0) 33%), linear-gradient(110deg,  #FAD338 33%,  #FAD338 33%,  #FAD338 10%);
+  }
+  #aval-navbar {
+    background: linear-gradient(110deg, #E84142 40%, rgba(0, 0, 0, 0) 40%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+  }
+  #polygon-navbar {
+    background: linear-gradient(110deg, #8247e5 40%, rgba(0, 0, 0, 0) 40%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+  }
+  #cronos-navbar {
+    background: linear-gradient(110deg, #00286a 40%, rgba(0, 0, 0, 0) 40%), linear-gradient(110deg, #FFFFFF 33%, #FFFFFF 33%, #FFFFFF 10%);
+  }
 }
 
 #navbar-button {
-  height: 4em;
-  width: 3em;
+  height: 3.5em;
+  width: 2.5em;
   border-radius: 50%;
   background-size: cover;
   background-position: center;
@@ -123,6 +141,13 @@ a {
 
 .loader.polygon {
   background: url("https://res.cloudinary.com/aa1997/image/upload/v1668398929/polygon.webp");
+  background-size: cover;
+  background-position: center;
+  object-position: center;
+}
+
+.loader.cronos {
+  background: url("https://res.cloudinary.com/aa1997/image/upload/v1668570300/crypto-com-logo.png");
   background-size: cover;
   background-position: center;
   object-position: center;

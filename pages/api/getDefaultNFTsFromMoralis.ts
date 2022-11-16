@@ -28,11 +28,12 @@ export default async function handler(
     const chainValue = req.query.chain as string;
     const nftChain = getChain(chainValue);
     const addresses = getDefaultAddresses(chainValue);
-
+    console.log('chainValue:', chainValue)
     let nfts: any[] = [];
     for(let i = 0; i < addresses.length; i++) {
         const addInfo = addresses[i];
         const nftInfo: any = await getNFTData(nftChain, addInfo.address, addInfo.tokenId);
+        // console.log("NFTINFO:", nftInfo)
         if(nftInfo && nftInfo.metadata) nfts.push(nftInfo);
     }
 

@@ -49,6 +49,7 @@ const Home: NextPage<HomeProps> = ({
   const [binanceDefaultNfts, setBinanceDefaultNfs] = useState<any[]>([]);
   const [avalancheDefaultNfts, setAvalancheDefaultNfs] = useState<any[]>([]);
   const [polygonDefaultNfts, setPolygonDefaultNfs] = useState<any[]>([]);
+  const [cronosDefaultNfts, setCronosDefaultNfs] = useState<any[]>([]);
   const isSolanaChain = currentChainSelected === "solana";
 
   async function getSolanaNft(value: string) {
@@ -83,6 +84,7 @@ const Home: NextPage<HomeProps> = ({
     if (currentChainSelected === "avalanche")
       return setAvalancheDefaultNfs(nfts);
     if (currentChainSelected === "polygon") return setPolygonDefaultNfs(nfts);
+    if (currentChainSelected === "cronos") return setCronosDefaultNfs(nfts);
     return setSolanaDefaultNfs(nfts);
   }
 
@@ -90,6 +92,7 @@ const Home: NextPage<HomeProps> = ({
     (currentChainSelected === "avalanche" && !avalancheDefaultNfts.length) ||
     (currentChainSelected === "polygon" && !polygonDefaultNfts.length) ||
     (currentChainSelected === "bsc" && !binanceDefaultNfts.length) ||
+    (currentChainSelected === "cronos" && !cronosDefaultNfts.length) ||
     (currentChainSelected === "solana" && !solanaDefaultNfts.length);
 
   useEffect(() => {
@@ -140,6 +143,7 @@ const Home: NextPage<HomeProps> = ({
         isAvalanche: false,
         isPolygon: false,
         isBinance: false,
+        isCronos: false,
       },
       { tokenAddress: data.nftData.tokenAddress, tokenId: "" }
     ),
@@ -160,7 +164,8 @@ const Home: NextPage<HomeProps> = ({
           ? getNFTImageUrl(cardMetadata.image)
           : getChainLogoUrl(
               currentChainSelected === "avalanche",
-              currentChainSelected === "polygon"
+              currentChainSelected === "polygon",
+              currentChainSelected === 'cronos'
             ),
       name: cardMetadata.name,
       collectionName: data.name,
@@ -171,6 +176,7 @@ const Home: NextPage<HomeProps> = ({
           isAvalanche: currentChainSelected === "avalanche",
           isPolygon: currentChainSelected === "polygon",
           isBinance: currentChainSelected === "bsc",
+          isCronos: currentChainSelected === 'cronos',
         },
         { tokenAddress: data.tokenAddress, tokenId: data.tokenId }
       ),
@@ -192,7 +198,7 @@ const Home: NextPage<HomeProps> = ({
           key={idx}
           isAvalanche={currentChainSelected === "avalanche"}
           isPolygon={currentChainSelected === "polygon"}
-          isBinance={currentChainSelected === "bsc"}
+          isCronos={currentChainSelected === "cronos"}
           {...convertDataToNonSolanaCardDisplay(nft)}
         />
       ));
@@ -223,11 +229,20 @@ const Home: NextPage<HomeProps> = ({
         />
       ));
     }
+    if (currentChainSelected === "cronos") {
+      return cronosDefaultNfts.map((nft: any, idx: number) => (
+        <NonSolanaNFTCard
+          key={idx}
+          {...convertDataToNonSolanaCardDisplay(nft)}
+          isCronos
+        />
+      ));
+    }
     return binanceDefaultNfts.map((nft: any, idx: number) => (
       <NonSolanaNFTCard
         key={idx}
         {...convertDataToNonSolanaCardDisplay(nft)}
-        isBinance
+        isCronos
       />
     ));
   }

@@ -69,28 +69,49 @@ export const avalancheAddresses = [
   { address: '0xf119264dfD54E5C4C3ca70D6071a7888Ab173266', tokenId: '775' },
 ];
 
+export const cronosAddresses = [
+  { address: '0x5c3112632cAA27FfDB121e0652aBb18379FE4167', tokenId: '1393' },
+  { address: '0x5c3112632cAA27FfDB121e0652aBb18379FE4167', tokenId: '3427' },
+  { address: '0x5c3112632cAA27FfDB121e0652aBb18379FE4167', tokenId: '2497' },
+  { address: '0x5c3112632cAA27FfDB121e0652aBb18379FE4167', tokenId: '3667' },
+  { address: '0x5c3112632cAA27FfDB121e0652aBb18379FE4167', tokenId: '2946' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '3413' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '4260' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '7787' },
+  { address: '0x9A7Cb962B9a9D36bfD52A75D277959Aa07c0a45f', tokenId: '203' },  
+  { address: '0x9A7Cb962B9a9D36bfD52A75D277959Aa07c0a45f', tokenId: '406' },
+  { address: '0x9A7Cb962B9a9D36bfD52A75D277959Aa07c0a45f', tokenId: '101' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '1187' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '2879' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '1936' },
+  { address: '0x3A25497e2761F9F7a744ABFECb3c1F7C668e9AE7', tokenId: '6638' },
+];
 
 export function getDefaultAddresses(chain: string) {
   if (chain === "polygon") return polygonAddresses;
   if (chain === 'avalanche') return avalancheAddresses;
+  if (chain === 'cronos') return cronosAddresses;
   return binanceAddresses;
 }
 
-export const getChainLogoUrl = (isAvalanche: boolean, isPolygon: boolean) => {
+export const getChainLogoUrl = (isAvalanche: boolean, isPolygon: boolean, isCronos: boolean) => {
   if(isAvalanche) return 'https://res.cloudinary.com/aa1997/image/upload/v1668398929/avalanche.png';
   if(isPolygon) return 'https://res.cloudinary.com/aa1997/image/upload/v1668398929/polygon.webp';
+  if(isCronos) return 'https://res.cloudinary.com/aa1997/image/upload/v1668570300/crypto-com-logo.png';
   return "https://res.cloudinary.com/aa1997/image/upload/v1668398929/binance.png";
 }
 
-export const getRedirectUri = ({ isAvalanche, isPolygon, isBinance }: {isAvalanche: boolean, isPolygon: boolean, isBinance: boolean}, { tokenAddress, tokenId }: { tokenAddress: string, tokenId: string }) => {
+export const getRedirectUri = ({ isAvalanche, isPolygon, isBinance, isCronos }: {isAvalanche: boolean, isPolygon: boolean, isBinance: boolean, isCronos: boolean}, { tokenAddress, tokenId }: { tokenAddress: string, tokenId: string }) => {
   if(isPolygon) return `https://polygonscan.com/token/${tokenAddress}?a=${tokenId}`;
   if(isAvalanche) return `https://snowtrace.io/token/${tokenAddress}?a=${tokenId}`;
   if(isBinance) return `https://bscscan.com/token/${tokenAddress}?a=${tokenId}`;
+  if(isCronos) return `https://cronoscan.com/token/${tokenAddress}?a=${tokenId}`;
   return `https://solscan.io/token/${tokenAddress}`
 }
 
 export function getChain(chain: string) {
   if (chain === "polygon") return EvmChain.POLYGON;
   if (chain === "avalanche") return EvmChain.AVALANCHE;
+  if (chain === 'cronos') return EvmChain.CRONOS;
   return EvmChain.BSC;
 }
