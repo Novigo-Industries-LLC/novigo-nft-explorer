@@ -72,7 +72,7 @@ const Home: NextPage<HomeProps> = ({
       `/api/getDefaultNFTsFromMoralis?chain=${currentChainSelected}`,
       {
         headers: {
-          "Retry-After": 7200,
+          "Retry-After": 4800,
         },
       }
     );
