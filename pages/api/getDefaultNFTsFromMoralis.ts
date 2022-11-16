@@ -6,17 +6,17 @@ import { EvmAddressish, EvmChain } from "@moralisweb3/evm-utils";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getDefaultAddresses, getChain } from "constants/defaultAddresses";
 
-function getNFTData(chain: EvmChain, address: string, tokenId: string){
-    return new Promise((resolve, reject) => {
-        return Moralis.EvmApi.nft.getNFTMetadata({
-            chain: chain,
-            address: address as EvmAddressish,
-            tokenId: tokenId as string,
-          })
-          .then(response => response?.toJSON())
-          .then(responseJson => resolve(responseJson));
-    })
-    .catch(error => console.error(error));
+function getNFTData(chain: EvmChain, address: string, tokenId: string) {
+  return new Promise((resolve, reject) => {
+    return Moralis.EvmApi.nft
+      .getNFTMetadata({
+        chain: chain,
+        address: address as EvmAddressish,
+        tokenId: tokenId as string,
+      })
+      .then((response) => response?.toJSON())
+      .then((responseJson) => resolve(responseJson));
+  }).catch((error) => console.error(error));
 }
 
 export default async function handler(
@@ -28,20 +28,24 @@ export default async function handler(
     const chainValue = req.query.chain as string;
     const nftChain = getChain(chainValue);
     const addresses = getDefaultAddresses(chainValue);
-    console.log('chainValue:', chainValue)
+    console.log("chainValue:", chainValue);
     let nfts: any[] = [];
-    for(let i = 0; i < addresses.length; i++) {
+    try {
+      for (let i = 0; i < addresses.length; i++) {
         const addInfo = addresses[i];
-        const nftInfo: any = await getNFTData(nftChain, addInfo.address, addInfo.tokenId);
+        const nftInfo: any = await getNFTData(
+          nftChain,
+          addInfo.address,
+          addInfo.tokenId
+        );
         // console.log("NFTINFO:", nftInfo)
-        if(nftInfo && nftInfo.metadata) nfts.push(nftInfo);
-    }
+        if (nftInfo && nftInfo.metadata) nfts.push(nftInfo);
+      }
 
-    return res
-      .status(200)
-      .json(
-        nfts
-      );
+      return res.status(200).json(nfts);
+    } catch (error: any) {
+      return res.status(500).json({ error });
+    }
   }
   return res.status(200).json({ nfts: [] });
 }
